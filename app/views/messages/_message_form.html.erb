@@ -1,0 +1,7 @@
+<%= form_for(@message) do |f| %>
+  <%= f.text_field :text %>
+  <%= f.hidden_field :user_id, { value: 1 } %>
+  <%= f.hidden_field :chatroom_id, { value: chatroom.id } %>
+  <%= f.submit %>
+<% end %>
+  
