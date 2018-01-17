@@ -1,6 +1,12 @@
 class MessagesController < ApplicationController
   def create
-    Message.create(message_params)
+    message = Message.new(message_params)
+    if message.save
+      ActionCable.server.broadcast 'sup',
+        message: message.text,
+        user: message.user.name
+      head :ok
+    end
   end
 private
   def message_params
